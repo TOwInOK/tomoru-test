@@ -33,7 +33,7 @@ The server will display IP statistics every second, showing the number of reques
 - `GET /ping`: Returns "pong" (health check endpoint)
 
 ## Showcase
-![showcase](.content\showcase.webp)
+![showcase](.content/showcase.webp)
 
 ## License
 
