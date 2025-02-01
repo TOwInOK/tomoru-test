@@ -24,9 +24,13 @@ use tracing::{error, info, instrument, trace, Level};
 
 mod logger;
 
+/// Type alias for HashMap storing IP addresses and their hit counts
 type IpStoreInner = HashMap<IpAddr, usize>;
+/// Type alias for thread-safe reference counted IP store
 type IpStore = Arc<RwLock<IpStoreInner>>;
 
+/// Main entry point that sets up and runs the HTTP server
+/// Handles graceful shutdown and statistics collection
 #[tokio::main]
 async fn main() {
     dotenv().ok();
@@ -141,7 +145,8 @@ async fn main() {
 }
 
 #[instrument(skip(store))]
-/// Print all ip_store
+/// Prints statistics about IP addresses and their hit counts
+/// Sorts IPs by number of hits in descending order
 async fn ip_notify(store: IpStore) {
     let mut entries: Vec<(IpAddr, usize)> = store
         .read()
@@ -160,7 +165,10 @@ async fn ip_notify(store: IpStore) {
 
     info!("\nIPs:\n{}", output);
 }
+
 #[instrument(skip_all)]
+/// Middleware that collects statistics about incoming IP addresses
+/// Increments a counter for each request from an IP
 async fn ip_collector_middleware(
     ConnectInfo(addr): ConnectInfo<SocketAddr>,
     State(state): State<IpStore>,
@@ -187,6 +195,7 @@ async fn ip_collector_middleware(
     next.run(request).await
 }
 
+/// Simple ping endpoint that returns "pong"
 async fn ping_handler() -> &'static str {
     "pong"
 }
