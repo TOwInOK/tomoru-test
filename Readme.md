@@ -10,6 +10,10 @@ A simple HTTP server that tracks and displays real-time IP address statistics fo
 - Graceful shutdown support
 - Configurable logging levels
 
+## Paths are tracked
+
+- /ping
+
 ## Configuration
 
 Environment variables (can be set via `.env` file):
