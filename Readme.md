@@ -12,7 +12,7 @@ A simple HTTP server that tracks and displays real-time IP address statistics fo
 
 ## Paths are tracked
 
-- /ping
+- `GET /ping`
 
 ## Configuration
 
