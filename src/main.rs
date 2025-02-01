@@ -158,8 +158,6 @@ async fn ip_notify(store: IpStore) {
         .collect::<Vec<_>>()
         .join("\n");
 
-    // According to the test task, we need to use stdout (probably std), so we use println!().
-    // In another situation, info!() because we use tracing
     info!("\nIPs:\n{}", output);
 }
 #[instrument(skip_all)]
