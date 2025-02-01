@@ -29,6 +29,15 @@ Environment variables (can be set via `.env` file):
 ```bash
 cargo run
 ```
+or
+
+1. Download [executable file](https://github.com/TOwInOK/tomoru-test/releases) for your system
+  - **note** only for macos users!
+  - ```sh
+    xattr -rd com.apple.quarantine name_of_file
+    ./name_of_file
+    ```
+2. launch `./name_of_file`
 
 The server will display IP statistics every second, showing the number of requests from each IP address sorted by frequency.
 
