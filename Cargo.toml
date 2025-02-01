@@ -1,0 +1,12 @@
+[package]
+name = "tomoru-test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.8.1"
+dotenvy = "0.15.7"
+tokio = { version = "1.43.0", features = ["parking_lot", "rt-multi-thread", "signal"] }
+tower = "0.5.2"
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
